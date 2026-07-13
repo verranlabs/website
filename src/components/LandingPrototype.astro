@@ -8,6 +8,8 @@ interface Props {
 
 const { prototype } = Astro.props;
 const isDark = prototype.theme === "basalt";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const assetUrl = (path: string) => `${base}/${path.replace(/^\/+/, "")}`;
 ---
 
 <main class:list={["prototype-page", `theme-${prototype.theme}`]}>
@@ -23,7 +25,7 @@ const isDark = prototype.theme === "basalt";
         <a class="button button-secondary" href="#services">{prototype.secondaryCta}</a>
       </div>
     </div>
-    <aside class="hero-panel" aria-label="Prototype summary">
+    <aside class="hero-panel" aria-label="Service summary">
       <div class="metric-box">
         <span>{prototype.heroMetric}</span>
         <p>{prototype.heroMetricLabel}</p>
@@ -57,8 +59,8 @@ const isDark = prototype.theme === "basalt";
       <p class="section-kicker">Offer shape</p>
       <h2>Specific enough to fund. Practical enough to deliver.</h2>
       <p>
-        Each direction keeps the call to action focused on one business conversation,
-        then proves Verran Labs can connect AI, agents, data, deployment, and handoff.
+        The first engagement stays focused on one business problem, while connecting
+        AI, agents, data, deployment, evaluation, and handoff into a credible delivery path.
       </p>
     </div>
     <div class="service-list">
@@ -95,7 +97,7 @@ const isDark = prototype.theme === "basalt";
     </div>
     <figure class="visual-frame">
       {prototype.visualImage && (
-        <img src={prototype.visualImage} alt="" loading="lazy" />
+        <img src={assetUrl(prototype.visualImage)} alt="" loading="lazy" />
       )}
     </figure>
   </section>

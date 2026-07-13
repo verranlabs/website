@@ -1,27 +1,23 @@
-# Verran Labs Landing Page Prototypes
+# Verran Labs Website
 
-Six mobile-first landing page directions for Verran Labs, built with Astro, TypeScript, and Tailwind CSS.
+The public Verran Labs marketing site, built with Astro, TypeScript, and Tailwind CSS.
+
+The current homepage leads with agentic RAG and private AI systems: the strongest of the original six landing-page directions because it gives Verran Labs a specific, technically credible point of view while leaving room for workflow automation, secure deployment, and production handoff services.
 
 ## Stack
 
 - Astro for static-first marketing pages
 - TypeScript for typed page data
 - Tailwind CSS for responsive styling
-- Verran Labs brand assets from `../assets/verran-labs-brand/`
+- Verran Labs brand assets in `public/assets/`
 
-The pages borrow shadcn/ui principles: restrained components, clear states, consistent controls, and reusable design tokens. They do not turn the marketing site into a React app.
+The page borrows shadcn/ui principles: restrained components, clear states, consistent controls, and reusable design tokens. It does not turn the marketing site into a React app.
 
-Each prototype includes an agentic LLM enablement section covering coding agents, hosted model APIs, self-hosted model tradeoffs, evaluation, and workflow adoption.
+The other prototype content remains in the data file for future positioning work, but only the selected Agentic RAG homepage is published.
 
-## Review Routes
+## Deployment
 
-- `/` - prototype chooser
-- `/agentic-rag` - agentic RAG and self-hostable AI systems
-- `/workflow-sprint` - broad AI Workflow Automation Sprint
-- `/secure-rag` - defense/cyber secure RAG and NLP
-- `/industrial-vision` - manufacturing and computer vision inspection
-- `/ops-automation` - reporting, dashboards, and ops data automation
-- `/fractional-ai-lead` - fractional production AI lead
+Pushes to `main` deploy through GitHub Actions to GitHub Pages. The initial Pages build uses the `/website` base path and is marked `noindex` until the custom `verranlabs.com` domain is connected.
 
 ## Local Commands
 
@@ -30,7 +26,3 @@ npm run dev
 npm run build
 npm run preview
 ```
-
-## Notes
-
-These are concept directions, not final site copy. The strongest final page may combine the Agentic RAG hero with proof and sections from the workflow and secure RAG routes.
