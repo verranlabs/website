@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
+  <title id="title">Verran Labs</title>
+  <desc id="desc">Earth-tone Verran Labs horizontal logo with geometric V datum mark.</desc>
+  <g transform="translate(32 20)">
+    <path fill="#242722" d="M30 30h65l65 190 65-190h65L188 330h-56z"/>
+    <path fill="#6F7D65" d="M112 286h34v8h-37zm62 0h34l3 8h-37z"/>
+    <path fill="#B86F3E" d="M146 278h28v28h-28z"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" text-rendering="geometricPrecision">
+    <text x="382" y="215" fill="#242722" font-size="138" font-weight="700" letter-spacing="17">VERRAN</text>
+    <text x="603" y="296" fill="#6F7D65" font-size="62" font-weight="400" letter-spacing="31">LABS</text>
+  </g>
+</svg>

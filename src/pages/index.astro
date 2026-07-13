@@ -1,0 +1,42 @@
+---
+import BrandHeader from "../components/BrandHeader.astro";
+import { prototypes } from "../data/prototypes";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Verran Labs Landing Page Prototypes"
+  description="Six professional, mobile-friendly landing page directions for Verran Labs."
+>
+  <main class="chooser-page">
+    <BrandHeader />
+    <section class="chooser-hero">
+      <div>
+        <p class="eyebrow">Verran Labs prototype set</p>
+        <h1>Six landing page directions built to earn the first conversation.</h1>
+        <p class="subtitle">
+          Each option uses the same brand system, mobile-first layout, and production AI
+          positioning, with agentic RAG and self-hostable AI now leading the set.
+        </p>
+      </div>
+      <div class="chooser-note">
+        <img src="/assets/verran-labs-mark.svg" alt="" />
+        <p>
+          Review these as positioning choices first and visual choices second. The best
+          page is the one that makes the right buyer think, "this is my workflow problem."
+        </p>
+      </div>
+    </section>
+
+    <section class="chooser-grid" aria-label="Landing page directions">
+      {prototypes.map((prototype) => (
+        <a class:list={["chooser-card", `theme-${prototype.theme}`]} href={`/${prototype.slug}`}>
+          <span>{prototype.eyebrow}</span>
+          <h2>{prototype.label}</h2>
+          <p>{prototype.subtitle}</p>
+          <strong>Open direction</strong>
+        </a>
+      ))}
+    </section>
+  </main>
+</BaseLayout>

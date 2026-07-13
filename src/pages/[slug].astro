@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LandingPrototype from "../components/LandingPrototype.astro";
+import { getPrototype, prototypes } from "../data/prototypes";
+
+export function getStaticPaths() {
+  return prototypes.map((prototype) => ({
+    params: { slug: prototype.slug },
+    props: { prototype },
+  }));
+}
+
+const { prototype } = Astro.props;
+---
+
+<BaseLayout
+  title={`${prototype.label} | Verran Labs Landing Prototype`}
+  description={prototype.subtitle}
+>
+  <LandingPrototype prototype={prototype} />
+</BaseLayout>

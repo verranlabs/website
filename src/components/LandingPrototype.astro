@@ -1,0 +1,128 @@
+---
+import BrandHeader from "./BrandHeader.astro";
+import type { Prototype } from "../data/prototypes";
+
+interface Props {
+  prototype: Prototype;
+}
+
+const { prototype } = Astro.props;
+const isDark = prototype.theme === "basalt";
+---
+
+<main class:list={["prototype-page", `theme-${prototype.theme}`]}>
+  <BrandHeader reversed={isDark} />
+
+  <section class="hero-section">
+    <div class="hero-copy">
+      <p class="eyebrow">{prototype.eyebrow}</p>
+      <h1>{prototype.title}</h1>
+      <p class="subtitle">{prototype.subtitle}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#contact">{prototype.primaryCta}</a>
+        <a class="button button-secondary" href="#services">{prototype.secondaryCta}</a>
+      </div>
+    </div>
+    <aside class="hero-panel" aria-label="Prototype summary">
+      <div class="metric-box">
+        <span>{prototype.heroMetric}</span>
+        <p>{prototype.heroMetricLabel}</p>
+      </div>
+      <div class="signal-list">
+        <p>Proof signals</p>
+        <ul>
+          {prototype.proof.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <section class="pain-band" aria-label="Buyer pain">
+    <div>
+      <p class="section-kicker">When this page should convert</p>
+      <h2>Best for {prototype.audience}.</h2>
+    </div>
+    <div class="pain-grid">
+      {prototype.pains.map((pain) => (
+        <div class="pain-item">
+          <span></span>
+          <p>{pain}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="services" class="split-section">
+    <div class="section-intro">
+      <p class="section-kicker">Offer shape</p>
+      <h2>Specific enough to fund. Practical enough to deliver.</h2>
+      <p>
+        Each direction keeps the call to action focused on one business conversation,
+        then proves Verran Labs can connect AI, agents, data, deployment, and handoff.
+      </p>
+    </div>
+    <div class="service-list">
+      {prototype.services.map((service) => (
+        <article class="service-card">
+          <h3>{service.title}</h3>
+          <p>{service.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="agentic-section" aria-label="Agentic LLM enablement">
+    <div class="agentic-copy">
+      <p class="section-kicker">Agentic LLM enablement</p>
+      <h2>{prototype.agentic.title}</h2>
+      <p>{prototype.agentic.body}</p>
+    </div>
+    <div class="agentic-list">
+      {prototype.agentic.tools.map((tool) => (
+        <div class="agentic-item">
+          <span></span>
+          <p>{tool}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="visual-section">
+    <div class="visual-copy">
+      <p class="section-kicker">System story</p>
+      <h2>{prototype.visualTitle}</h2>
+      <p>{prototype.visualBody}</p>
+    </div>
+    <figure class="visual-frame">
+      {prototype.visualImage && (
+        <img src={prototype.visualImage} alt="" loading="lazy" />
+      )}
+    </figure>
+  </section>
+
+  <section class="process-section" aria-label="Engagement process">
+    <p class="section-kicker">How the first conversation becomes work</p>
+    <div class="process-grid">
+      {prototype.process.map((step, index) => (
+        <div class="process-step">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <p>{step}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div>
+      <p class="section-kicker">Next step</p>
+      <h2>{prototype.contactPrompt}</h2>
+      <p>
+        Bring one workflow, one bottleneck, or one prototype. The first call should
+        clarify whether there is a focused paid path worth scoping.
+      </p>
+    </div>
+    <a class="button button-primary" href="mailto:hello@verranlabs.com?subject=Verran%20Labs%20workflow%20consult">
+      Start the conversation
+    </a>
+  </section>
+</main>

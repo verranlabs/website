@@ -1,0 +1,23 @@
+---
+import { prototypes } from "../data/prototypes";
+
+interface Props {
+  reversed?: boolean;
+}
+
+const { reversed = false } = Astro.props;
+const logo = reversed
+  ? "/assets/verran-labs-logo-horizontal-reversed.svg"
+  : "/assets/verran-labs-logo-horizontal.svg";
+---
+
+<header class:list={["site-header", reversed && "site-header-dark"]}>
+  <a class="brand-link" href="/" aria-label="Verran Labs prototype chooser">
+    <img src={logo} alt="Verran Labs" class="brand-logo" />
+  </a>
+  <nav class="prototype-nav" aria-label="Prototype pages">
+    {prototypes.map((prototype) => (
+      <a href={`/${prototype.slug}`}>{prototype.label}</a>
+    ))}
+  </nav>
+</header>
