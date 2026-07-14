@@ -11,9 +11,11 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "npm run test:acceptance",
-    "test:acceptance": "npm run test:acceptance:preview && npm run test:acceptance:indexed",
+    "test:acceptance": "npm run test:acceptance:preview && npm run test:acceptance:invalid-analytics && npm run test:acceptance:indexed && npm run test:acceptance:configured-analytics",
     "test:acceptance:preview": "TEST_INDEXING_MODE=preview playwright test",
+    "test:acceptance:invalid-analytics": "TEST_INDEXING_MODE=preview TEST_ANALYTICS_MODE=invalid playwright test tests/acceptance/analytics-attribution.spec.ts",
     "test:acceptance:indexed": "TEST_INDEXING_MODE=indexed playwright test",
+    "test:acceptance:configured-analytics": "TEST_INDEXING_MODE=preview TEST_ANALYTICS_MODE=configured playwright test tests/acceptance/analytics-attribution.spec.ts",
     "astro": "astro"
   },
   "dependencies": {
