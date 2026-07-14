@@ -12,6 +12,13 @@ const readText = (value: string | undefined): string | null => {
   return normalized ? normalized : null;
 };
 
+const readCloudflareAnalyticsBeacon = (
+  value: string | undefined,
+): string | null => {
+  const normalized = readText(value);
+  return normalized && /^[a-z0-9]{32}$/.test(normalized) ? normalized : null;
+};
+
 const readHttpsUrl = (value: string | undefined): string | null => {
   const normalized = readText(value);
 
@@ -56,7 +63,7 @@ export const publicSiteConfig: PublicSiteConfig = Object.freeze({
   tallyFormId: readText(import.meta.env.PUBLIC_TALLY_FORM_ID),
   bookingUrl: readHttpsUrl(import.meta.env.PUBLIC_BOOKING_URL),
   linkedInUrl: readHttpsUrl(import.meta.env.PUBLIC_LINKEDIN_URL),
-  cloudflareAnalyticsBeacon: readText(
+  cloudflareAnalyticsBeacon: readCloudflareAnalyticsBeacon(
     import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_BEACON,
   ),
   canonicalSiteRoot:

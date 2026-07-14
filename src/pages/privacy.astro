@@ -1,6 +1,7 @@
 ---
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import { publicSiteConfig } from "../config/public";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/privacy.css";
 ---
@@ -68,10 +69,24 @@ import "../styles/privacy.css";
           <article>
             <span>Measurement</span>
             <h3>Cloudflare Web Analytics</h3>
-            <p>
-              When enabled before production distribution, Cloudflare provides
-              privacy-first pageview, referrer, page, and performance trends without a cookie-heavy stack.
-            </p>
+            {
+              publicSiteConfig.cloudflareAnalyticsBeacon ? (
+                <p>
+                  <strong>Cloudflare Web Analytics is active in this build.</strong> It
+                  measures aggregate pageviews, page paths, referring sites, and page-load
+                  performance metrics. Its browser beacon does not use cookies or browser storage.
+                </p>
+              ) : (
+                <p>
+                  <strong>
+                    Cloudflare Web Analytics is not active in this build. No analytics beacon is loaded.
+                  </strong>{" "}
+                  If activated at the production launch gate, it will measure aggregate
+                  pageviews, page paths, referring sites, and page-load performance metrics.
+                  Its browser beacon does not use cookies or browser storage.
+                </p>
+              )
+            }
           </article>
         </div>
       </section>

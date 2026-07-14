@@ -20,6 +20,9 @@ const socialPreview = new URL(
 const robotsContent = publicSiteConfig.indexingEnabled
   ? "index, follow"
   : "noindex, nofollow";
+const cloudflareBeaconConfig = publicSiteConfig.cloudflareAnalyticsBeacon
+  ? JSON.stringify({ token: publicSiteConfig.cloudflareAnalyticsBeacon })
+  : null;
 ---
 
 <!doctype html>
@@ -47,5 +50,15 @@ const robotsContent = publicSiteConfig.indexingEnabled
 
       preserveAttributionOnLinks();
     </script>
+    {
+      cloudflareBeaconConfig && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={cloudflareBeaconConfig}
+        />
+      )
+    }
   </body>
 </html>
