@@ -1,0 +1,241 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { routes } from "../config/routes";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Private Agentic Workspace Setup | Verran Labs"
+  description="A $4,500 done-with-you private agentic workspace for qualified individual knowledge workers."
+>
+  <div class="marketing-page workspace-page">
+    <div class="enterprise-intro">
+      <SiteHeader />
+
+      <section class="enterprise-hero workspace-hero">
+        <div class="enterprise-hero-copy">
+          <p class="marketing-eyebrow">Private Agentic Workspace Setup</p>
+          <h1>Build a private AI workspace around the knowledge work only you can do.</h1>
+          <p class="enterprise-lede">
+            A done-with-you engagement for experienced individual knowledge workers
+            who need focused retrieval and agent support around their own approved
+            material—not a general-purpose consumer assistant.
+          </p>
+          <div class="enterprise-actions">
+            <a
+              class="marketing-button marketing-button-primary"
+              href={routes.agenticWorkspaceContact}
+              data-preserve-attribution
+            >
+              Request the $4,500 Workspace
+            </a>
+          </div>
+        </div>
+
+        <aside class="boundary-map" aria-label="Workspace engagement summary">
+          <p class="boundary-map-label">Fixed-price engagement</p>
+          <p class="workspace-price">$4,500</p>
+          <p class="boundary-map-note">One person · one bounded workflow</p>
+        </aside>
+      </section>
+    </div>
+
+    <main class="enterprise-main">
+      <section class="buyer-fit" aria-labelledby="workspace-fit-title">
+        <div>
+          <p class="marketing-kicker">Built for high-value knowledge work</p>
+          <h2 id="workspace-fit-title">A focused workspace for people whose context matters.</h2>
+        </div>
+        <ul class="buyer-fit-list">
+          <li><strong>Technical founders</strong> organizing product, customer, and operating knowledge.</li>
+          <li><strong>Independent consultants</strong> working across research, notes, and repeatable client work.</li>
+          <li><strong>Researchers</strong> synthesizing approved literature and recurring analysis.</li>
+          <li><strong>Executives</strong> turning trusted source material into bounded decision support.</li>
+        </ul>
+      </section>
+
+      <section
+        class="assessment-section"
+        aria-labelledby="workspace-offer-title"
+      >
+        <div class="assessment-heading">
+          <p class="marketing-kicker">Done with you · Fixed price</p>
+          <h2 id="workspace-offer-title">Private Agentic Workspace Setup</h2>
+          <p>
+            For <strong>$4,500</strong>, Verran Labs configures a practical workspace
+            around a clearly approved knowledge boundary and one valuable recurring workflow.
+            It is designed for technical founders, independent consultants, researchers,
+            and executives doing high-value individual knowledge work.
+          </p>
+          <div class="assessment-meta">
+            <span>$4,500 fixed price</span>
+            <span>One individual workspace</span>
+            <span>Bounded delivery</span>
+          </div>
+        </div>
+
+        <div class="deliverable-grid">
+          <article><span>01</span><h3>Up to two approved knowledge sources</h3><p>Select and bound the files, notes, or research that the workspace may use.</p></article>
+          <article><span>02</span><h3>One bounded workflow</h3><p>Define one recurring task with explicit inputs, outputs, and human control.</p></article>
+          <article><span>03</span><h3>Private retrieval and interaction interface</h3><p>Work with approved knowledge through a focused retrieval and interaction experience.</p></article>
+          <article><span>04</span><h3>Model and hosting guidance</h3><p>Receive a recommendation grounded in ownership, operating, and privacy tradeoffs.</p></article>
+          <article><span>05</span><h3>Two working sessions</h3><p>Shape the workflow together, then review how to use and maintain the result.</p></article>
+          <article><span>06</span><h3>Documentation and handoff</h3><p>Take ownership with operating notes, a clear handoff, and 14 days of support.</p></article>
+        </div>
+      </section>
+
+      <section
+        class="founder-boundary workspace-boundary"
+        aria-labelledby="workspace-boundary-title"
+      >
+        <div>
+          <p class="marketing-kicker">Clear delivery boundary</p>
+          <h2 id="workspace-boundary-title">Outside the base scope</h2>
+          <p class="founder-lede">
+            Additional knowledge sources, additional workflows, third-party integrations,
+            travel, and ongoing support require separate scope. The engagement does not
+            promise a universal personal assistant or an indefinitely managed personal environment.
+          </p>
+        </div>
+        <aside class="claims-note" aria-label="Privacy boundary">
+          <strong>Private does not mean automatic</strong>
+          <p>
+            Model and hosting choices are recommendations, not guarantees. Approved sources,
+            access, and operating responsibilities are confirmed before delivery begins.
+          </p>
+        </aside>
+      </section>
+
+      <section class="workspace-process" aria-labelledby="workspace-process-title">
+        <div class="workspace-process-heading">
+          <p class="marketing-kicker">A qualified, bounded start</p>
+          <h2 id="workspace-process-title">From fit review to workspace handoff</h2>
+          <p>
+            This is a consulting engagement, not a self-service checkout. Each step
+            confirms that the work is valuable, safe to bound, and realistic to deliver.
+          </p>
+        </div>
+
+        <ol>
+          <li><span>01</span><div><h3>Qualification</h3><p>Submit a low-sensitivity inquiry and acknowledge the published price.</p></div></li>
+          <li><span>02</span><div><h3>20-minute fit call</h3><p>Qualified buyers receive the unlisted scheduling path; exploratory inquiries receive manual review.</p></div></li>
+          <li><span>03</span><div><h3>Scope and data boundaries</h3><p>Confirm the approved sources, bounded workflow, access model, and delivery responsibilities.</p></div></li>
+          <li><span>04</span><div><h3>Signed agreement and invoicing</h3><p>Delivery begins only after the agreement, invoice, start date, and current capacity are confirmed.</p></div></li>
+        </ol>
+
+        <div class="workspace-process-action">
+          <p><strong>No self-service checkout.</strong> Start with a bounded fit review.</p>
+          <a
+            class="marketing-button marketing-button-primary"
+            href={routes.agenticWorkspaceContact}
+            data-preserve-attribution
+          >
+            Request the $4,500 Workspace
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
+</BaseLayout>
+
+<style>
+  .workspace-hero {
+    min-height: min(690px, calc(100vh - 90px));
+  }
+
+  .workspace-price {
+    color: var(--limestone);
+    font-size: clamp(3rem, 8vw, 5.8rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    margin: 2rem 0;
+  }
+
+  .workspace-boundary {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .workspace-process {
+    display: grid;
+    gap: clamp(2rem, 6vw, 4rem);
+    grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+    padding-block: clamp(4rem, 9vw, 7.5rem);
+  }
+
+  .workspace-process-heading h2 {
+    font-size: clamp(2rem, 4.8vw, 4.25rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .workspace-process-heading > p:not(.marketing-kicker),
+  .workspace-process li p,
+  .workspace-process-action p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .workspace-process-heading > p:not(.marketing-kicker) {
+    margin: 1.25rem 0 0;
+  }
+
+  .workspace-process ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .workspace-process li {
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    padding: 1.2rem 0;
+  }
+
+  .workspace-process li > span {
+    color: var(--ochre);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .workspace-process li h3 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .workspace-process li p {
+    font-size: 0.9rem;
+    margin: 0.35rem 0 0;
+  }
+
+  .workspace-process-action {
+    align-items: center;
+    background: var(--limestone);
+    display: flex;
+    gap: 1.5rem;
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .workspace-process-action p {
+    margin: 0;
+  }
+
+  @media (max-width: 760px) {
+    .workspace-process {
+      grid-template-columns: 1fr;
+    }
+
+    .workspace-process-action {
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
+</style>

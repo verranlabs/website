@@ -5,8 +5,10 @@ export const publicAssetUrl = (path: string): string =>
 
 export const routes = Object.freeze({
   home: `${basePath}/`,
+  agenticWorkspace: `${basePath}/private-agentic-workspace/`,
   assessmentContact: `${basePath}/contact/?offer=enterprise-assessment`,
   workflowReviewContact: `${basePath}/contact/?offer=workflow-review`,
+  agenticWorkspaceContact: `${basePath}/contact/?offer=agentic-workspace`,
   contact: `${basePath}/contact/`,
   qualifiedContact: `${basePath}/contact/qualified/`,
   receivedContact: `${basePath}/contact/received/`,

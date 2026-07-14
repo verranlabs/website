@@ -17,10 +17,9 @@ The site uses restrained components, clear states, consistent controls, and reus
 ## Published routes
 
 - Home: enterprise positioning and the Private AI System Assessment
+- Private Agentic Workspace: the bounded $4,500 individual knowledge-worker offer
 - Contact: one low-sensitivity qualification boundary for every offer path
 - Privacy: permitted fields, prohibited submissions, processors, and retention
-
-The Private Agentic Workspace route is added by its dedicated implementation ticket.
 
 ## Deployment
 
@@ -34,16 +33,19 @@ Copy `.env.example` to `.env` when local integration values are needed. Every su
 
 The preview remains non-indexable by default. Indexing is enabled only when a valid HTTPS `PUBLIC_SITE_ORIGIN` and `PUBLIC_SITE_INDEXING=enabled` are supplied together.
 
-When `PUBLIC_TALLY_FORM_ID` is absent, Contact shows a safe email fallback and asks visitors not to send files or sensitive details. Contact forwards its `offer` query parameter to the embedded form's matching hidden field.
+When `PUBLIC_TALLY_FORM_ID` is absent, Contact shows a safe email fallback and asks visitors not to send files or sensitive details. Contact forwards its `offer` query parameter and the approved `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, and `referral` attribution parameters to matching Tally hidden fields. Other query parameters are not forwarded.
 
 ### Tally qualification contract
 
 The published Tally form must:
 
 - Begin with the four approved engagement paths and include a case-sensitive hidden field named `offer`.
+- Recognize `offer=agentic-workspace` as the preselected `$4,500 Private Agentic Workspace Setup` path.
 - Collect only the permitted low-sensitivity fields documented on Contact and Privacy.
 - Contain no file-upload or attachment block.
+- Require the workspace buyer to acknowledge the published $4,500 fixed price before that branch can qualify for scheduling.
 - Route an active enterprise opportunity with budget allocated or under review to `/contact/qualified/` after submission.
+- Route a workspace inquiry that acknowledges the price and otherwise qualifies to `/contact/qualified/` after submission.
 - Route exploratory, uncertain, and otherwise unqualified inquiries to `/contact/received/` after submission.
 
 The qualified completion route renders `PUBLIC_BOOKING_URL` when it is configured; the manual-review route never renders it. Browser tests exercise this integration contract with a boundary fixture. The real Tally branches, upload prohibition, notifications, and Google booking destination still require live smoke tests during the production launch gate.

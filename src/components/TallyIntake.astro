@@ -40,23 +40,22 @@ if (tallyUrl) {
   }
 </div>
 
-<script is:inline>
-  (() => {
-    const frame = document.querySelector("iframe[data-tally-intake]");
+<script>
+  import { copyAllowedAttribution } from "../scripts/attribution";
 
-    if (!(frame instanceof HTMLIFrameElement) || !frame.dataset.tallySrc) {
-      return;
-    }
+  const frame = document.querySelector("iframe[data-tally-intake]");
 
+  if (frame instanceof HTMLIFrameElement && frame.dataset.tallySrc) {
     const formUrl = new URL(frame.dataset.tallySrc);
     const pageParameters = new URLSearchParams(window.location.search);
-    const offer = pageParameters.get("offer");
+    const offer = pageParameters.get("offer")?.trim();
 
     if (offer) {
       formUrl.searchParams.set("offer", offer);
     }
 
+    copyAllowedAttribution(pageParameters, formUrl.searchParams);
     formUrl.searchParams.set("originPage", window.location.pathname);
     frame.src = formUrl.toString();
-  })();
+  }
 </script>
