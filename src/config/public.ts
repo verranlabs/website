@@ -2,6 +2,7 @@ type PublicSiteConfig = Readonly<{
   tallyFormId: string | null;
   bookingUrl: string | null;
   linkedInUrl: string | null;
+  founderHeadshotUrl: string | null;
   cloudflareAnalyticsBeacon: string | null;
   canonicalSiteRoot: string;
   indexingEnabled: boolean;
@@ -56,6 +57,9 @@ export const publicSiteConfig: PublicSiteConfig = Object.freeze({
   tallyFormId: readText(import.meta.env.PUBLIC_TALLY_FORM_ID),
   bookingUrl: readHttpsUrl(import.meta.env.PUBLIC_BOOKING_URL),
   linkedInUrl: readHttpsUrl(import.meta.env.PUBLIC_LINKEDIN_URL),
+  founderHeadshotUrl: readHttpsUrl(
+    import.meta.env.PUBLIC_FOUNDER_HEADSHOT_URL,
+  ),
   cloudflareAnalyticsBeacon: readText(
     import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_BEACON,
   ),

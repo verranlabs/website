@@ -2,6 +2,7 @@
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/contact.css";
 import "../styles/privacy.css";
 ---
 
@@ -22,7 +23,7 @@ import "../styles/privacy.css";
       </header>
     </div>
 
-    <main class="subpage-main privacy-content">
+    <main id="main-content" class="subpage-main privacy-content" tabindex="-1">
       <section class="privacy-summary" aria-labelledby="privacy-summary-title">
         <div>
           <p class="marketing-kicker">Information collected</p>

@@ -35,6 +35,8 @@ The preview remains non-indexable by default. Indexing is enabled only when a va
 
 When `PUBLIC_TALLY_FORM_ID` is absent, Contact shows a safe email fallback and asks visitors not to send files or sensitive details. Contact forwards its `offer` query parameter and the approved `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, and `referral` attribution parameters to matching Tally hidden fields. Workflow Review and Private Agentic Workspace calls to action preserve those approved attribution parameters; arbitrary query values are not forwarded.
 
+Founder proof remains honest when launch inputs are absent. Configure `PUBLIC_FOUNDER_HEADSHOT_URL` with the supplied professional photograph and `PUBLIC_LINKEDIN_URL` with the confirmed profile destination; each must be an HTTPS URL and is rendered independently. Until verified values are supplied, the site publishes a plain pending-verification state rather than a substitute portrait or guessed profile.
+
 ### Tally qualification contract
 
 The published Tally form must:

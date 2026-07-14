@@ -6,7 +6,7 @@
   --basalt-2: #353a32;
   --sage: #6f7d65;
   --sage-2: #9aa892;
-  --ochre: #b86f3e;
+  --ochre: #9b552b;
   --ochre-2: #d99a68;
   --limestone: #f1ece2;
   --paper: #fbfaf6;
@@ -24,6 +24,24 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+.skip-link {
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 800;
+  left: 1rem;
+  padding: 0.8rem 1rem;
+  position: fixed;
+  top: 1rem;
+  transform: translateY(-200%);
+  z-index: 100;
+}
+
+.skip-link:focus-visible {
+  outline: 3px solid var(--ochre);
+  outline-offset: 3px;
+  transform: translateY(0);
 }
 
 body {

@@ -1,13 +1,13 @@
 ---
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import { publicAssetUrl, routes } from "../config/routes";
+import { publicSiteConfig } from "../config/public";
+import { routes } from "../config/routes";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/home-offers.css";
 
-const architectureImage = publicAssetUrl(
-  "assets/secure-agentic-data-workflow-offer-stack.png",
-);
+const founderHeadshotUrl = publicSiteConfig.founderHeadshotUrl;
+const linkedInUrl = publicSiteConfig.linkedInUrl;
 ---
 
 <BaseLayout
@@ -64,7 +64,7 @@ const architectureImage = publicAssetUrl(
       </div>
     </div>
 
-    <main class="enterprise-main">
+    <main id="main-content" class="enterprise-main" tabindex="-1">
       <section class="buyer-fit" aria-labelledby="buyer-fit-title">
         <div>
           <p class="marketing-kicker">When the system is stuck</p>
@@ -173,14 +173,18 @@ const architectureImage = publicAssetUrl(
             <li>Self-hosting remains an option—not a guarantee.</li>
           </ul>
         </div>
-        <figure>
-          <img
-            src={architectureImage}
-            alt="Architecture diagram showing sources, retrieval, bounded agents, evaluation, and human approval"
-            width="1672"
-            height="941"
-            loading="lazy"
-          />
+        <figure class="architecture-visual" aria-label="Private AI system architecture">
+          <ol class="architecture-flow" aria-label="Controlled system path">
+            <li><span>01</span><strong>Approved sources</strong><small>Named data boundary</small></li>
+            <li><span>02</span><strong>Controlled ingestion</strong><small>Parse, normalize, trace</small></li>
+            <li><span>03</span><strong>Retrieval</strong><small>Evidence with citations</small></li>
+            <li><span>04</span><strong>Model boundary</strong><small>Chosen for the constraints</small></li>
+            <li><span>05</span><strong>Bounded actions</strong><small>Explicit tools and permissions</small></li>
+          </ol>
+          <div class="architecture-controls" aria-label="Operating controls">
+            <div><span>Human approval</span><small>Review before consequential action</small></div>
+            <div><span>Evaluation feedback</span><small>Quality, refusal, and regression checks</small></div>
+          </div>
           <figcaption>Representative private-AI system pattern; final architecture follows the assessment.</figcaption>
         </figure>
       </section>
@@ -208,16 +212,62 @@ const architectureImage = publicAssetUrl(
         </aside>
       </section>
 
-      <section class="founder-boundary" aria-labelledby="founder-title">
-        <div>
-          <p class="marketing-kicker">Founder-led delivery</p>
-          <h2 id="founder-title">Built and led by Joseph Tabalon Jr.</h2>
-          <p class="founder-lede">
-            Joseph Tabalon Jr. leads and participates directly in every engagement,
-            bringing hands-on experience across defense cyber RAG and NLP, secure
-            container and AWS deployment, production data pipelines, evaluation,
-            and computer-vision inspection systems.
-          </p>
+      <section
+        class="founder-boundary"
+        aria-label="Founder-led delivery"
+      >
+        <div class="founder-profile">
+          {
+            founderHeadshotUrl ? (
+              <img
+                class="founder-headshot"
+                src={founderHeadshotUrl}
+                alt="Joseph Tabalon Jr., founder of Verran Labs"
+                width="640"
+                height="800"
+                loading="lazy"
+              />
+            ) : (
+              <div class="founder-photo-pending" aria-hidden="true">
+                <span>Founder profile</span>
+                <strong>Photography held until supplied and verified.</strong>
+              </div>
+            )
+          }
+          <div>
+            <p class="marketing-kicker">Founder-led delivery</p>
+            <h2 id="founder-title">Built and led by Joseph Tabalon Jr.</h2>
+            <p class="founder-lede">
+              Joseph Tabalon Jr. leads and participates directly in every engagement,
+              bringing hands-on experience across defense cyber RAG and NLP, secure
+              container and AWS deployment, production data pipelines, evaluation,
+              and computer-vision inspection systems.
+            </p>
+            {
+              linkedInUrl && (
+                <a
+                  class="founder-link"
+                  href={linkedInUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View Joseph on LinkedIn
+                </a>
+              )
+            }
+            {
+              !founderHeadshotUrl && !linkedInUrl ? (
+                <p class="founder-proof-status">
+                  Professional headshot and LinkedIn profile pending launch verification.
+                </p>
+              ) : (
+                <>
+                  {!founderHeadshotUrl && <p class="founder-proof-status">Professional headshot pending launch verification.</p>}
+                  {!linkedInUrl && <p class="founder-proof-status">LinkedIn profile pending launch verification.</p>}
+                </>
+              )
+            }
+          </div>
         </div>
         <aside class="claims-note" aria-label="Company credential boundary">
           <strong>Claims boundary</strong>
@@ -227,6 +277,24 @@ const architectureImage = publicAssetUrl(
             not promise that any deployment pattern is automatically secure or compliant.
           </p>
         </aside>
+      </section>
+
+      <section class="selected-experience" aria-labelledby="selected-experience-title">
+        <div class="selected-experience-heading">
+          <p class="marketing-kicker">Claims-safe proof</p>
+          <h2 id="selected-experience-title">Selected Experience</h2>
+          <p>
+            Anonymized areas from Joseph’s prior work—not Verran Labs client case studies.
+            Planned demonstrations are not presented as completed work. No client identities,
+            protected program details, or invented metrics are presented.
+          </p>
+        </div>
+        <div class="experience-grid">
+          <article><span>01</span><h3>DoD cyber RAG and NLP</h3><p>Retrieval, enrichment, and analyst-support workflows for sensitive technical knowledge.</p></article>
+          <article><span>02</span><h3>Secure container and AWS deployment</h3><p>Containerized delivery and cloud deployment work in environments with explicit operating boundaries.</p></article>
+          <article><span>03</span><h3>Production data ingestion and evaluation</h3><p>Repeatable ingestion pipelines and evaluation practices that support production decisions.</p></article>
+          <article><span>04</span><h3>Computer-vision inspection and imaging</h3><p>Inspection and imaging workflows that keep human review in the operating loop.</p></article>
+        </div>
       </section>
 
       <section class="capacity-panel" aria-labelledby="capacity-title">
