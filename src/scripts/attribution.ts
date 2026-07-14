@@ -10,19 +10,14 @@ const allowedAttributionParameters = Object.freeze([
 export const copyAllowedAttribution = (
   source: URLSearchParams,
   destination: URLSearchParams,
-): boolean => {
-  let copiedParameter = false;
-
+): void => {
   for (const parameter of allowedAttributionParameters) {
     const value = source.get(parameter)?.trim();
 
     if (value) {
       destination.set(parameter, value);
-      copiedParameter = true;
     }
   }
-
-  return copiedParameter;
 };
 
 export const preserveAttributionOnLinks = (): void => {

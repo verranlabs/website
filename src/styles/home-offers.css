@@ -1,0 +1,184 @@
+/* Offer sections used only on the Home page. */
+.workflow-review-section,
+.workspace-path {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.workflow-review-heading h2,
+.workspace-path h2 {
+  font-size: clamp(2rem, 4.8vw, 4.25rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+.workflow-review-heading > p:not(.marketing-kicker, .workflow-review-price),
+.workflow-review-details p,
+.workflow-review-boundary p,
+.workspace-path > div > p:not(.marketing-kicker),
+.workspace-path aside p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.workflow-review-heading > p:not(.marketing-kicker, .workflow-review-price),
+.workflow-review-details p,
+.workflow-review-boundary p {
+  font-size: 0.96rem;
+}
+
+.workflow-review-section {
+  background: var(--limestone);
+  border: 1px solid var(--line);
+  margin-block: clamp(1rem, 3vw, 2.5rem);
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.workflow-review-heading {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+}
+
+.workflow-review-heading .marketing-kicker,
+.workflow-review-heading h2,
+.workflow-review-price {
+  grid-column: 1;
+}
+
+.workflow-review-heading > p:not(.marketing-kicker, .workflow-review-price) {
+  align-self: end;
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  margin: 0;
+}
+
+.workflow-review-price {
+  color: var(--ochre);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.workflow-review-price strong {
+  color: var(--ink);
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  margin-right: 0.35rem;
+}
+
+.workflow-review-details {
+  background: var(--line);
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2.5rem;
+}
+
+.workflow-review-details article {
+  background: var(--paper);
+  padding: 1.35rem;
+}
+
+.workflow-review-details span {
+  color: var(--ochre);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workflow-review-details h3 {
+  font-size: 1.16rem;
+  line-height: 1.25;
+  margin: 1.4rem 0 0.7rem;
+}
+
+.workflow-review-details p {
+  margin: 0;
+}
+
+.workflow-review-details ul {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.workflow-review-details li {
+  border-left: 3px solid var(--sage);
+  font-size: 0.88rem;
+  font-weight: 720;
+  padding-left: 0.7rem;
+}
+
+.workflow-review-boundary {
+  align-items: center;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: 2rem;
+}
+
+.workflow-review-boundary p {
+  margin: 0;
+  max-width: 720px;
+}
+
+.workspace-path {
+  align-items: end;
+  background: var(--limestone);
+  display: grid;
+  gap: clamp(2rem, 7vw, 5rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.65fr);
+  margin-inline: calc(clamp(1rem, 4vw, 2rem) * -1);
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.workspace-path > div > p:not(.marketing-kicker) {
+  margin: 1.25rem 0 0;
+  max-width: 680px;
+}
+
+.workspace-path aside {
+  border-left: 4px solid var(--ochre);
+  padding-left: 1.25rem;
+}
+
+.workspace-path aside span {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.workspace-path aside p {
+  font-size: 0.9rem;
+  margin: 0.6rem 0 1.25rem;
+}
+
+@media (max-width: 880px) {
+  .workflow-review-heading,
+  .workspace-path {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-review-heading > p:not(.marketing-kicker, .workflow-review-price) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .workflow-review-boundary,
+  .workflow-review-boundary .marketing-button {
+    width: 100%;
+  }
+
+  .workflow-review-details,
+  .workflow-review-boundary {
+    grid-template-columns: 1fr;
+  }
+}
