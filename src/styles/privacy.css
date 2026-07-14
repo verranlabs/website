@@ -1,0 +1,89 @@
+.privacy-content {
+  padding-bottom: 1rem;
+}
+
+
+.privacy-summary,
+.privacy-practices {
+  display: grid;
+  gap: clamp(2rem, 7vw, 5rem);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.privacy-summary h2,
+.processor-section h2,
+.privacy-practices h2 {
+  font-size: clamp(1.9rem, 4.5vw, 3.8rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+.privacy-summary > div > p,
+.privacy-practices p,
+.processor-grid p {
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.privacy-summary .sensitive-warning {
+  margin: 1.5rem 0 0;
+}
+
+.processor-section {
+  border-block: 1px solid var(--line);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.processor-grid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2.5rem;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.processor-grid article {
+  background: var(--paper);
+  min-height: 260px;
+  padding: 1.35rem;
+}
+
+.processor-grid span {
+  color: var(--ochre);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.processor-grid h3 {
+  font-size: 1.35rem;
+  margin: 2.4rem 0 0.75rem;
+}
+
+.privacy-practices a {
+  color: var(--ochre);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.privacy-practices p + p {
+  margin-top: 1rem;
+}
+
+@media (max-width: 760px) {
+  .privacy-summary,
+  .privacy-practices,
+  .processor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .processor-grid article {
+    min-height: auto;
+  }
+}

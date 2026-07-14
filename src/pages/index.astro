@@ -1,18 +1,171 @@
 ---
-import LandingPrototype from "../components/LandingPrototype.astro";
-import { getPrototype } from "../data/prototypes";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { publicAssetUrl, routes } from "../config/routes";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const prototype = getPrototype("agentic-rag");
-
-if (!prototype) {
-  throw new Error("The selected Agentic RAG homepage is missing.");
-}
+const architectureImage = publicAssetUrl(
+  "assets/secure-agentic-data-workflow-offer-stack.png",
+);
 ---
 
 <BaseLayout
-  title="Agentic RAG and Private AI Systems | Verran Labs"
-  description="Verran Labs builds agentic RAG and private AI systems that technical teams can own, evaluate, and improve."
+  title="Private AI Systems for Sensitive Knowledge | Verran Labs"
+  description="Verran Labs helps defense contractors and regulated technical teams assess, design, and deploy private AI and agentic RAG systems."
 >
-  <LandingPrototype prototype={prototype} />
+  <div class="marketing-page">
+    <div class="enterprise-intro">
+      <SiteHeader />
+
+      <div>
+        <section class="enterprise-hero">
+          <div class="enterprise-hero-copy">
+            <p class="marketing-eyebrow">Private AI systems for sensitive knowledge</p>
+            <h1>Turn sensitive internal knowledge into a private AI system your team can trust.</h1>
+            <p class="enterprise-lede">
+              Verran Labs helps defense contractors and regulated technical teams assess,
+              design, and deploy agentic RAG systems with clear security boundaries,
+              measurable evaluation, and human control.
+            </p>
+            <div class="enterprise-actions">
+              <a class="marketing-button marketing-button-primary" href={routes.assessmentContact}>
+                Request a Private AI System Assessment
+              </a>
+              <a class="marketing-button marketing-button-secondary" href={routes.workflowReviewContact}>
+                Explore the $2,500 Workflow Review
+              </a>
+            </div>
+          </div>
+
+          <aside class="boundary-map" aria-label="Private AI system boundaries">
+            <p class="boundary-map-label">A controlled production path</p>
+            <ol>
+              <li>
+                <span>01</span>
+                <div><strong>Approved knowledge</strong><small>Sources and sensitivity mapped</small></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div><strong>Retrieval and evaluation</strong><small>Quality measured before scale</small></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div><strong>Bounded agent actions</strong><small>Human approval where mistakes cost</small></div>
+              </li>
+            </ol>
+            <p class="boundary-map-note">Ownership option ≠ automatic privacy</p>
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <main class="enterprise-main">
+      <section class="buyer-fit" aria-labelledby="buyer-fit-title">
+        <div>
+          <p class="marketing-kicker">When the system is stuck</p>
+          <h2 id="buyer-fit-title">Move from a promising prototype to a defensible production decision.</h2>
+        </div>
+        <ul class="buyer-fit-list">
+          <li>Sensitive knowledge cannot move into an unmanaged tool.</li>
+          <li>Retrieval quality is demonstrated, but not measured.</li>
+          <li>Agent permissions and human approvals are still undefined.</li>
+          <li>The team cannot yet defend hosting, security, or operating tradeoffs.</li>
+        </ul>
+      </section>
+
+      <section
+        id="assessment"
+        class="assessment-section"
+        aria-labelledby="assessment-title"
+      >
+        <div class="assessment-heading">
+          <p class="marketing-kicker">Primary engagement · 2–4 weeks</p>
+          <h2 id="assessment-title">Private AI System Assessment</h2>
+          <p>
+            A custom-scoped decision engagement for an active private-AI, RAG, or
+            sensitive-knowledge problem. The outcome is a credible architecture and
+            implementation path—not another open-ended discovery exercise.
+          </p>
+          <div class="assessment-meta">
+            <span>Custom scoped</span>
+            <span>One focused system</span>
+            <span>Decision-ready roadmap</span>
+          </div>
+        </div>
+
+        <div class="deliverable-grid">
+          <article><span>01</span><h3>Knowledge-source and workflow map</h3><p>Define approved inputs, users, decisions, and operational handoffs.</p></article>
+          <article><span>02</span><h3>Model and deployment recommendation</h3><p>Compare managed, private-endpoint, and self-hosted options against the real constraints.</p></article>
+          <article><span>03</span><h3>Retrieval and bounded-agent architecture</h3><p>Specify retrieval, tool permissions, human review, and failure boundaries.</p></article>
+          <article><span>04</span><h3>Security and approval boundaries</h3><p>Make data flow, access, escalation, and ownership assumptions explicit.</p></article>
+          <article><span>05</span><h3>Evaluation plan</h3><p>Define retrieval, answer-quality, refusal, and regression checks before scaling.</p></article>
+          <article><span>06</span><h3>Risks, dependencies, and roadmap</h3><p>Leave with sequenced decisions, build milestones, and known procurement constraints.</p></article>
+        </div>
+      </section>
+
+      <section class="system-evidence" aria-labelledby="system-evidence-title">
+        <div class="system-evidence-copy">
+          <p class="marketing-kicker">System evidence</p>
+          <h2 id="system-evidence-title">Architecture before autonomy.</h2>
+          <p>
+            A useful agentic RAG system is more than search plus chat. It connects
+            controlled ingestion, retrieval, model routing, tool permissions,
+            evaluation, observability, and human control into one operating design.
+          </p>
+          <ul>
+            <li>Security boundaries are documented, not implied.</li>
+            <li>Evaluation is part of the system, not a launch-week add-on.</li>
+            <li>Self-hosting remains an option—not a guarantee.</li>
+          </ul>
+        </div>
+        <figure>
+          <img
+            src={architectureImage}
+            alt="Architecture diagram showing sources, retrieval, bounded agents, evaluation, and human approval"
+            width="1672"
+            height="941"
+            loading="lazy"
+          />
+          <figcaption>Representative private-AI system pattern; final architecture follows the assessment.</figcaption>
+        </figure>
+      </section>
+
+      <section class="founder-boundary" aria-labelledby="founder-title">
+        <div>
+          <p class="marketing-kicker">Founder-led delivery</p>
+          <h2 id="founder-title">Built and led by Joseph Tabalon Jr.</h2>
+          <p class="founder-lede">
+            Joseph Tabalon Jr. leads and participates directly in every engagement,
+            bringing hands-on experience across defense cyber RAG and NLP, secure
+            container and AWS deployment, production data pipelines, evaluation,
+            and computer-vision inspection systems.
+          </p>
+        </div>
+        <aside class="claims-note" aria-label="Company credential boundary">
+          <strong>Claims boundary</strong>
+          <p>
+            Joseph has experience in cleared and secure government environments.
+            Verran Labs does not claim company clearance or certification, and does
+            not promise that any deployment pattern is automatically secure or compliant.
+          </p>
+        </aside>
+      </section>
+
+      <section class="capacity-panel" aria-labelledby="capacity-title">
+        <div>
+          <p class="marketing-kicker">Focused capacity</p>
+          <h2 id="capacity-title">Start with one decision that matters.</h2>
+          <p>
+            Verran Labs accepts a limited number of focused engagements. Start dates
+            are confirmed after scope, security requirements, and current capacity are reviewed.
+          </p>
+        </div>
+        <a class="marketing-button marketing-button-primary" href={routes.assessmentContact}>
+          Request an assessment
+        </a>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
 </BaseLayout>

@@ -1,0 +1,101 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/privacy.css";
+---
+
+<BaseLayout
+  title="Privacy | Verran Labs"
+  description="How Verran Labs limits website intake data and uses Tally, Google Calendar, and privacy-first analytics."
+>
+  <div class="marketing-page">
+    <div class="subpage-intro">
+      <SiteHeader />
+      <header class="subpage-hero">
+        <p class="marketing-eyebrow">Website privacy</p>
+        <h1>Privacy starts with collecting less.</h1>
+        <p>
+          This website is designed for low-sensitivity qualification. It is not an
+          approved channel for client data, credentials, protected records, or system access.
+        </p>
+      </header>
+    </div>
+
+    <main class="subpage-main privacy-content">
+      <section class="privacy-summary" aria-labelledby="privacy-summary-title">
+        <div>
+          <p class="marketing-kicker">Information collected</p>
+          <h2 id="privacy-summary-title">Only what is needed to evaluate fit.</h2>
+        </div>
+        <div>
+          <p>
+            Name, work email, organization and role, requested engagement path,
+            high-level problem description, general sensitivity category, desired
+            timeline, budget status, and basic campaign or referral attribution may be collected.
+          </p>
+          <aside class="sensitive-warning" aria-label="Prohibited submissions">
+            <strong>Do not submit classified information.</strong>
+            <p>
+              Do not submit classified information, credentials, client data,
+              export-controlled material, personal records, or other sensitive content.
+              Uploads and attachments are not accepted.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="processor-section" aria-labelledby="processor-title">
+        <p class="marketing-kicker">Service processors</p>
+        <h2 id="processor-title">Tools used at the website boundary</h2>
+        <div class="processor-grid">
+          <article>
+            <span>Qualification</span>
+            <h3>Tally</h3>
+            <p>
+              When the qualification form is enabled, Tally processes the permitted
+              intake fields and delivers the inquiry for review. File uploads are disabled.
+            </p>
+          </article>
+          <article>
+            <span>Scheduling</span>
+            <h3>Google Calendar</h3>
+            <p>
+              Qualified prospects may receive access to an unlisted Google Calendar
+              booking page. Scheduling information is processed by Google and used to run the fit call.
+            </p>
+          </article>
+          <article>
+            <span>Measurement</span>
+            <h3>Cloudflare Web Analytics</h3>
+            <p>
+              When enabled before production distribution, Cloudflare provides
+              privacy-first pageview, referrer, page, and performance trends without a cookie-heavy stack.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="privacy-practices" aria-labelledby="privacy-practices-title">
+        <div>
+          <p class="marketing-kicker">Use and retention</p>
+          <h2 id="privacy-practices-title">Inquiry data supports qualification—not resale.</h2>
+        </div>
+        <div>
+          <p>
+            Inquiry data is used to evaluate fit, respond, schedule qualified calls,
+            prepare a potential engagement, and understand which outreach channels are useful.
+            It is retained only as long as needed for those business purposes and applicable recordkeeping.
+          </p>
+          <p>
+            Questions or deletion requests can be sent to
+            <a href="mailto:hello@verranlabs.com">hello@verranlabs.com</a>. Do not include
+            protected material in the message.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
+</BaseLayout>

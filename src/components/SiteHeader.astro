@@ -1,0 +1,17 @@
+---
+import { publicAssetUrl, routes } from "../config/routes";
+
+const logo = publicAssetUrl("assets/verran-labs-logo-horizontal-reversed.svg");
+---
+
+<header class="masthead">
+  <a class="masthead-brand" href={routes.home} aria-label="Verran Labs home">
+    <img src={logo} alt="Verran Labs" width="486" height="110" />
+  </a>
+  <nav class="masthead-nav" aria-label="Primary navigation">
+    <a href={routes.home}>Home</a>
+    <a href={`${routes.home}#assessment`}>Assessment</a>
+    <a href={routes.contact}>Contact</a>
+    <a href={routes.privacy}>Privacy</a>
+  </nav>
+</header>

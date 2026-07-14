@@ -1,0 +1,62 @@
+---
+import { publicSiteConfig } from "../config/public";
+
+const tallyUrl = publicSiteConfig.tallyFormId
+  ? new URL(
+      `/embed/${encodeURIComponent(publicSiteConfig.tallyFormId)}`,
+      "https://tally.so",
+    )
+  : null;
+
+if (tallyUrl) {
+  tallyUrl.searchParams.set("alignLeft", "1");
+  tallyUrl.searchParams.set("hideTitle", "1");
+  tallyUrl.searchParams.set("transparentBackground", "1");
+  tallyUrl.searchParams.set("dynamicHeight", "1");
+}
+---
+
+<div class="intake-frame">
+  {
+    tallyUrl ? (
+      <iframe
+        src={tallyUrl.toString()}
+        data-tally-intake
+        data-tally-src={tallyUrl.toString()}
+        title="Verran Labs qualification form"
+        loading="lazy"
+        width="100%"
+        height="720"
+      />
+    ) : (
+      <div class="intake-fallback" role="status">
+        <strong>The qualification form is being configured.</strong>
+        <p>
+          Email <a href="mailto:hello@verranlabs.com">hello@verranlabs.com</a> with a
+          high-level description of the workflow. Do not send files or sensitive details.
+        </p>
+      </div>
+    )
+  }
+</div>
+
+<script is:inline>
+  (() => {
+    const frame = document.querySelector("iframe[data-tally-intake]");
+
+    if (!(frame instanceof HTMLIFrameElement) || !frame.dataset.tallySrc) {
+      return;
+    }
+
+    const formUrl = new URL(frame.dataset.tallySrc);
+    const pageParameters = new URLSearchParams(window.location.search);
+    const offer = pageParameters.get("offer");
+
+    if (offer) {
+      formUrl.searchParams.set("offer", offer);
+    }
+
+    formUrl.searchParams.set("originPage", window.location.pathname);
+    frame.src = formUrl.toString();
+  })();
+</script>

@@ -1,0 +1,43 @@
+---
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import { publicSiteConfig } from "../../config/public";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/contact.css";
+---
+
+<BaseLayout
+  title="Schedule a Verran Labs Fit Call"
+  description="Qualified Verran Labs prospects can schedule an unlisted 20-minute fit call."
+>
+  <div class="marketing-page">
+    <div class="subpage-intro">
+      <SiteHeader />
+      <main class="status-page">
+        <p class="marketing-eyebrow">Qualified next step</p>
+        <h1>Your fit call is ready to schedule.</h1>
+        <p>
+          Choose a 20-minute time to confirm scope, security boundaries, decision
+          ownership, and whether there is a focused paid path worth pursuing.
+        </p>
+        {
+          publicSiteConfig.bookingUrl ? (
+            <a
+              class="marketing-button marketing-button-primary"
+              href={publicSiteConfig.bookingUrl}
+              rel="noreferrer"
+            >
+              Schedule the Verran Labs Fit Call
+            </a>
+          ) : (
+            <div class="status-note" role="status">
+              Scheduling is being configured. Verran Labs will follow up using the work
+              email submitted with the inquiry.
+            </div>
+          )
+        }
+      </main>
+    </div>
+    <SiteFooter />
+  </div>
+</BaseLayout>

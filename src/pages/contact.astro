@@ -1,0 +1,84 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import TallyIntake from "../components/TallyIntake.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/contact.css";
+---
+
+<BaseLayout
+  title="Contact Verran Labs | Private AI System Assessment"
+  description="Request a bounded fit review for a private AI assessment, AI Workflow Review, or Private Agentic Workspace Setup."
+>
+  <div class="marketing-page">
+    <div class="subpage-intro">
+      <SiteHeader />
+      <header class="subpage-hero">
+        <p class="marketing-eyebrow">Qualification before access</p>
+        <h1>Start with a bounded fit review.</h1>
+        <p>
+          Share the business problem, general sensitivity category, timing, and budget
+          posture—not the protected material itself. Verran Labs will confirm whether
+          there is a focused engagement worth discussing.
+        </p>
+      </header>
+    </div>
+
+    <main class="subpage-main contact-layout">
+      <section class="intake-section" aria-labelledby="intake-title">
+        <div class="intake-heading">
+          <p class="marketing-kicker">One qualification path</p>
+          <h2 id="intake-title">What are you looking for?</h2>
+          <ul class="offer-paths">
+            <li>Custom enterprise assessment or pilot</li>
+            <li>$2,500 AI Workflow Review</li>
+            <li>$4,500 Private Agentic Workspace Setup</li>
+            <li>Not sure yet</li>
+          </ul>
+        </div>
+
+        <div>
+          <aside class="sensitive-warning" aria-label="Sensitive data warning">
+            <strong>Keep sensitive material out of this form.</strong>
+            <p>
+              Do not submit classified information, credentials, client data,
+              export-controlled material, personal records, or other sensitive content.
+              Uploads and attachments are not accepted.
+            </p>
+          </aside>
+          <TallyIntake />
+        </div>
+      </section>
+
+      <section class="intake-contract" aria-labelledby="intake-contract-title">
+        <div>
+          <p class="marketing-kicker">Low-sensitivity intake</p>
+          <h2 id="intake-contract-title">What the form may ask</h2>
+          <ul>
+            <li>Name and work email</li>
+            <li>Organization and role</li>
+            <li>Engagement path</li>
+            <li>High-level problem description</li>
+            <li>General data-sensitivity category</li>
+            <li>Desired timeline and budget status</li>
+          </ul>
+        </div>
+        <div>
+          <p class="marketing-kicker">What happens next</p>
+          <h2>Scheduling follows qualification.</h2>
+          <p>
+            Qualified prospects may be offered an unlisted 20-minute fit call after
+            the correct intake path. Exploratory and uncertain inquiries receive manual
+            review rather than immediate scheduling access.
+          </p>
+          <p>
+            Before work begins, both parties confirm scope and data boundaries, sign an
+            agreement, and complete invoicing. This website does not offer instant checkout.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
+</BaseLayout>

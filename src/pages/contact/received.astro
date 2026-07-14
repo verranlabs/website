@@ -1,0 +1,29 @@
+---
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/contact.css";
+---
+
+<BaseLayout
+  title="Inquiry Received | Verran Labs"
+  description="Your Verran Labs inquiry has been received for manual fit review."
+>
+  <div class="marketing-page">
+    <div class="subpage-intro">
+      <SiteHeader />
+      <main class="status-page">
+        <p class="marketing-eyebrow">Manual fit review</p>
+        <h1>Your inquiry is in review.</h1>
+        <p>
+          Exploratory and uncertain inquiries are reviewed before scheduling. Verran Labs
+          will respond using the work email submitted with the form if there is a focused next step.
+        </p>
+        <div class="status-note">
+          Do not email files, credentials, protected records, or sensitive system details.
+        </div>
+      </main>
+    </div>
+    <SiteFooter />
+  </div>
+</BaseLayout>
