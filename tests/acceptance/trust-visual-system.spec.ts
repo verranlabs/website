@@ -3,10 +3,55 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const indexingMode = process.env.TEST_INDEXING_MODE ?? "preview";
 const publicRoutes = [
-  { path: "./", heading: "Turn sensitive internal knowledge into a private AI system your team can trust." },
-  { path: "./private-agentic-workspace/", heading: "Build a private AI workspace around the knowledge work only you can do." },
-  { path: "./contact/", heading: "Start with a bounded fit review." },
-  { path: "./privacy/", heading: "Privacy starts with collecting less." },
+  {
+    path: "./",
+    heading: "Turn sensitive internal knowledge into a private AI system your team can trust.",
+    assertContent: async (page: Page) => {
+      await expect(
+        page.getByRole("link", { name: "Request a Private AI System Assessment" }),
+      ).toBeVisible();
+      await expect(page.getByText("$2,500", { exact: true }).first()).toBeVisible();
+      await expect(page.getByText("$4,500 fixed price", { exact: true }).first()).toBeVisible();
+      await expect(page.getByRole("region", { name: "Founder-led delivery" })).toBeVisible();
+      await expect(
+        page.getByRole("figure", { name: "Private AI system architecture" }),
+      ).toBeVisible();
+    },
+    focusAction: (page: Page) =>
+      page.getByRole("link", { name: "Request a Private AI System Assessment" }),
+  },
+  {
+    path: "./private-agentic-workspace/",
+    heading: "Build a private AI workspace around the knowledge work only you can do.",
+    assertContent: async (page: Page) => {
+      await expect(page.getByText("$4,500", { exact: true }).first()).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "Request the $4,500 Workspace" }).first(),
+      ).toBeVisible();
+    },
+    focusAction: (page: Page) =>
+      page.getByRole("link", { name: "Request the $4,500 Workspace" }).first(),
+  },
+  {
+    path: "./contact/",
+    heading: "Start with a bounded fit review.",
+    assertContent: async (page: Page) => {
+      await expect(page.locator(".intake-frame")).toBeVisible();
+      await expect(page.getByText("$2,500 AI Workflow Review", { exact: true })).toBeVisible();
+      await expect(
+        page.getByText("$4,500 Private Agentic Workspace Setup", { exact: true }),
+      ).toBeVisible();
+    },
+    focusAction: (page: Page) =>
+      page.getByRole("contentinfo").getByRole("link", { name: "Privacy" }),
+  },
+  {
+    path: "./privacy/",
+    heading: "Privacy starts with collecting less.",
+    assertContent: async () => undefined,
+    focusAction: (page: Page) =>
+      page.getByRole("contentinfo").getByRole("link", { name: "Home" }),
+  },
 ] as const;
 
 const tabTo = async (page: Page, target: Locator): Promise<void> => {
@@ -145,20 +190,7 @@ test("all four routes keep semantic structure, contrast, and width from 320 pixe
       await expect(page.getByRole("navigation", { name: "Primary navigation" })).toBeVisible();
       await expect(page.getByRole("contentinfo")).toBeVisible();
 
-      if (route.path === "./") {
-        await expect(page.getByRole("link", { name: "Request a Private AI System Assessment" })).toBeVisible();
-        await expect(page.getByText("$2,500", { exact: true }).first()).toBeVisible();
-        await expect(page.getByText("$4,500 fixed price", { exact: true }).first()).toBeVisible();
-        await expect(page.getByRole("region", { name: "Founder-led delivery" })).toBeVisible();
-        await expect(page.getByRole("figure", { name: "Private AI system architecture" })).toBeVisible();
-      } else if (route.path === "./private-agentic-workspace/") {
-        await expect(page.getByText("$4,500", { exact: true }).first()).toBeVisible();
-        await expect(page.getByRole("link", { name: "Request the $4,500 Workspace" }).first()).toBeVisible();
-      } else if (route.path === "./contact/") {
-        await expect(page.locator(".intake-frame")).toBeVisible();
-        await expect(page.getByText("$2,500 AI Workflow Review", { exact: true })).toBeVisible();
-        await expect(page.getByText("$4,500 Private Agentic Workspace Setup", { exact: true })).toBeVisible();
-      }
+      await route.assertContent(page);
 
       const hasHorizontalOverflow = await page.evaluate(
         () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -190,14 +222,7 @@ test("navigation, calls to action, and footer links expose visible keyboard focu
     await tabTo(page, contactNavigationLink);
     await expectVisibleFocus(contactNavigationLink);
 
-    const pageAction =
-      route.path === "./"
-        ? page.getByRole("link", { name: "Request a Private AI System Assessment" })
-        : route.path === "./private-agentic-workspace/"
-          ? page.getByRole("link", { name: "Request the $4,500 Workspace" }).first()
-          : page
-              .getByRole("contentinfo")
-              .getByRole("link", { name: route.path === "./contact/" ? "Privacy" : "Home" });
+    const pageAction = route.focusAction(page);
 
     await tabTo(page, pageAction);
     await expectVisibleFocus(pageAction);

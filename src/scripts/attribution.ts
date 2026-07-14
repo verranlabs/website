@@ -1,3 +1,5 @@
+import { isApprovedOffer } from "../config/offers";
+
 const allowedAttributionParameters = Object.freeze([
   "utm_source",
   "utm_medium",
@@ -6,12 +8,6 @@ const allowedAttributionParameters = Object.freeze([
   "utm_term",
   "referral",
 ]);
-const allowedOffers = new Set([
-  "enterprise-assessment",
-  "workflow-review",
-  "agentic-workspace",
-]);
-
 export const copyAllowedAttribution = (
   source: URLSearchParams,
   destination: URLSearchParams,
@@ -31,7 +27,7 @@ export const copyAllowedOffer = (
 ): void => {
   const destinationOffer = destination.get("offer")?.trim();
 
-  if (destinationOffer && allowedOffers.has(destinationOffer)) {
+  if (destinationOffer && isApprovedOffer(destinationOffer)) {
     destination.set("offer", destinationOffer);
     return;
   }
@@ -39,7 +35,7 @@ export const copyAllowedOffer = (
   destination.delete("offer");
   const offer = source.get("offer")?.trim();
 
-  if (offer && allowedOffers.has(offer)) {
+  if (offer && isApprovedOffer(offer)) {
     destination.set("offer", offer);
   }
 };
