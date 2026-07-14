@@ -40,7 +40,12 @@ if (tallyUrl) {
   }
 </div>
 
-<script is:inline>
+<script>
+  import {
+    copyAttributionParameters,
+    tallyAttributionParameters,
+  } from "../scripts/attribution";
+
   (() => {
     const frame = document.querySelector("iframe[data-tally-intake]");
 
@@ -50,11 +55,12 @@ if (tallyUrl) {
 
     const formUrl = new URL(frame.dataset.tallySrc);
     const pageParameters = new URLSearchParams(window.location.search);
-    const offer = pageParameters.get("offer");
 
-    if (offer) {
-      formUrl.searchParams.set("offer", offer);
-    }
+    copyAttributionParameters(
+      pageParameters,
+      formUrl,
+      tallyAttributionParameters,
+    );
 
     formUrl.searchParams.set("originPage", window.location.pathname);
     frame.src = formUrl.toString();

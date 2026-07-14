@@ -34,19 +34,20 @@ Copy `.env.example` to `.env` when local integration values are needed. Every su
 
 The preview remains non-indexable by default. Indexing is enabled only when a valid HTTPS `PUBLIC_SITE_ORIGIN` and `PUBLIC_SITE_INDEXING=enabled` are supplied together.
 
-When `PUBLIC_TALLY_FORM_ID` is absent, Contact shows a safe email fallback and asks visitors not to send files or sensitive details. Contact forwards its `offer` query parameter to the embedded form's matching hidden field.
+When `PUBLIC_TALLY_FORM_ID` is absent, Contact shows a safe email fallback and asks visitors not to send files or sensitive details. Contact forwards `offer` and the approved `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, and `referral` attribution parameters to matching Tally hidden fields. Workflow Review calls to action preserve those attribution parameters from Home; arbitrary query values are not forwarded.
 
 ### Tally qualification contract
 
 The published Tally form must:
 
-- Begin with the four approved engagement paths and include a case-sensitive hidden field named `offer`.
+- Begin with the four approved engagement paths and include case-sensitive hidden fields matching the supported attribution parameters.
 - Collect only the permitted low-sensitivity fields documented on Contact and Privacy.
 - Contain no file-upload or attachment block.
 - Route an active enterprise opportunity with budget allocated or under review to `/contact/qualified/` after submission.
-- Route exploratory, uncertain, and otherwise unqualified inquiries to `/contact/received/` after submission.
+- Require an AI Workflow Review buyer to acknowledge the published $2,500 price before routing to `/contact/qualified/` after submission.
+- Route exploratory, uncertain, price-unacknowledged, and otherwise unqualified inquiries to `/contact/received/` after submission.
 
-The qualified completion route renders `PUBLIC_BOOKING_URL` when it is configured; the manual-review route never renders it. Browser tests exercise this integration contract with a boundary fixture. The real Tally branches, upload prohibition, notifications, and Google booking destination still require live smoke tests during the production launch gate.
+The qualified completion route renders `PUBLIC_BOOKING_URL` when it is configured; the manual-review route never renders it. Browser tests exercise this integration contract with a boundary fixture. The real Tally branches, required price acknowledgement, upload prohibition, notifications, and Google booking destination still require live smoke tests during the production launch gate.
 
 ## Local Commands
 
