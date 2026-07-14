@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { canonicalUrlFor, publicSiteConfig } from "../config/public";
 
 interface Props {
   title: string;
@@ -10,10 +11,14 @@ const { title, description } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const faviconSvg = `${base}/favicon.svg`;
 const faviconIco = `${base}/favicon.ico`;
-const socialPreviewPath = `${base}/assets/social-preview-1200x630.jpg`;
-const socialPreview = Astro.site
-  ? new URL(socialPreviewPath, Astro.site).toString()
-  : socialPreviewPath;
+const canonicalUrl = canonicalUrlFor(Astro.url);
+const socialPreview = new URL(
+  "assets/social-preview-1200x630.jpg",
+  publicSiteConfig.canonicalSiteRoot,
+).toString();
+const robotsContent = publicSiteConfig.indexingEnabled
+  ? "index, follow"
+  : "noindex, nofollow";
 ---
 
 <!doctype html>
@@ -22,11 +27,12 @@ const socialPreview = Astro.site
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content={robotsContent} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialPreview} />
     <meta name="theme-color" content="#242722" />
     <link rel="icon" href={faviconSvg} type="image/svg+xml" />

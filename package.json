@@ -9,11 +9,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
+    "test": "npm run test:acceptance",
+    "test:acceptance": "npm run test:acceptance:preview && npm run test:acceptance:indexed",
+    "test:acceptance:preview": "TEST_INDEXING_MODE=preview playwright test",
+    "test:acceptance:indexed": "TEST_INDEXING_MODE=indexed playwright test",
     "astro": "astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.7",
     "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "typescript": "6.0.3"
   }
 }
