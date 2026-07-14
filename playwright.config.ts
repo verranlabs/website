@@ -3,7 +3,7 @@ import { defineConfig } from "@playwright/test";
 const previewUrl = "http://127.0.0.1:4321/website/";
 const buildCommand =
   process.env.TEST_INDEXING_MODE === "indexed"
-    ? "PUBLIC_SITE_ORIGIN=https://verranlabs.com PUBLIC_SITE_INDEXING=enabled PUBLIC_TALLY_FORM_ID=test-form PUBLIC_BOOKING_URL=https://calendar.google.com/calendar/appointments/schedules/test-fit-call npm run build"
+    ? "PUBLIC_SITE_ORIGIN=https://verranlabs.com PUBLIC_SITE_INDEXING=enabled PUBLIC_TALLY_FORM_ID=test-form PUBLIC_BOOKING_URL=https://calendar.google.com/calendar/appointments/schedules/test-fit-call PUBLIC_FOUNDER_HEADSHOT_URL=https://assets.example.com/joseph-tabalon-jr.jpg PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/confirmed-founder-profile npm run build"
     : "PUBLIC_SITE_INDEXING=enabled PUBLIC_BOOKING_URL=not-a-url PUBLIC_TALLY_FORM_ID=test-form npm run build";
 
 export default defineConfig({

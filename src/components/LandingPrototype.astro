@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const assetUrl = (path: string) => `${base}/${path.replace(/^\/+/, "")}`;
 ---
 
-<main class:list={["prototype-page", `theme-${prototype.theme}`]}>
+<main id="main-content" class:list={["prototype-page", `theme-${prototype.theme}`]} tabindex="-1">
   <BrandHeader reversed={isDark} />
 
   <section class="hero-section">
