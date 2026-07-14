@@ -31,7 +31,11 @@ const architectureImage = publicAssetUrl(
               <a class="marketing-button marketing-button-primary" href={routes.assessmentContact}>
                 Request a Private AI System Assessment
               </a>
-              <a class="marketing-button marketing-button-secondary" href={routes.workflowReviewContact}>
+              <a
+                class="marketing-button marketing-button-secondary"
+                href={routes.workflowReviewContact}
+                data-preserve-attribution
+              >
                 Explore the $2,500 Workflow Review
               </a>
             </div>
@@ -103,6 +107,55 @@ const architectureImage = publicAssetUrl(
         </div>
       </section>
 
+      <section
+        id="workflow-review"
+        class="workflow-review-section"
+        aria-labelledby="workflow-review-title"
+      >
+        <div class="workflow-review-heading">
+          <p class="marketing-kicker">For smaller teams · Fixed scope</p>
+          <h2 id="workflow-review-title">AI Workflow Review</h2>
+          <p class="workflow-review-price"><strong>$2,500</strong> fixed price</p>
+          <p>
+            Bring one workflow or AI idea that needs a credible decision before your
+            team commits to a larger build. The review turns one focused working
+            session into a written, decision-ready recommendation.
+          </p>
+        </div>
+
+        <div class="workflow-review-details">
+          <article>
+            <span>Working session</span>
+            <h3>Includes one 60–90 minute working session</h3>
+            <p>Map the goal, current process, available inputs, constraints, and decision boundary.</p>
+          </article>
+          <article>
+            <span>Written outcome</span>
+            <h3>A recommendation your team can act on</h3>
+            <ul>
+              <li>Feasibility recommendation</li>
+              <li>Architecture recommendation</li>
+              <li>Risk recommendation</li>
+              <li>Next-step recommendation</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="workflow-review-boundary">
+          <p>
+            <strong>Implementation is not included.</strong> Additional workflows,
+            integrations, travel, implementation, and ongoing support are separate scope.
+          </p>
+          <a
+            class="marketing-button marketing-button-primary"
+            href={routes.workflowReviewContact}
+            data-preserve-attribution
+          >
+            Request the Workflow Review
+          </a>
+        </div>
+      </section>
+
       <section class="system-evidence" aria-labelledby="system-evidence-title">
         <div class="system-evidence-copy">
           <p class="marketing-kicker">System evidence</p>
@@ -169,3 +222,39 @@ const architectureImage = publicAssetUrl(
     <SiteFooter />
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (() => {
+    const attributionParameters = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "referral",
+    ];
+    const pageParameters = new URLSearchParams(window.location.search);
+
+    document.querySelectorAll("a[data-preserve-attribution]").forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      const target = new URL(link.href);
+      let hasAttribution = false;
+
+      for (const parameter of attributionParameters) {
+        const value = pageParameters.get(parameter);
+
+        if (value !== null) {
+          target.searchParams.set(parameter, value);
+          hasAttribution = true;
+        }
+      }
+
+      if (hasAttribution) {
+        link.href = target.toString();
+      }
+    });
+  })();
+</script>

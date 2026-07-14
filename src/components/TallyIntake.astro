@@ -50,10 +50,22 @@ if (tallyUrl) {
 
     const formUrl = new URL(frame.dataset.tallySrc);
     const pageParameters = new URLSearchParams(window.location.search);
-    const offer = pageParameters.get("offer");
+    const allowedParameters = [
+      "offer",
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content",
+      "referral",
+    ];
 
-    if (offer) {
-      formUrl.searchParams.set("offer", offer);
+    for (const parameter of allowedParameters) {
+      const value = pageParameters.get(parameter);
+
+      if (value !== null) {
+        formUrl.searchParams.set(parameter, value);
+      }
     }
 
     formUrl.searchParams.set("originPage", window.location.pathname);
