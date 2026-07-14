@@ -143,8 +143,9 @@ const architectureImage = publicAssetUrl(
 
         <div class="workflow-review-boundary">
           <p>
-            <strong>Implementation is not included.</strong> Additional workflows,
-            integrations, travel, implementation, and ongoing support are separate scope.
+            <strong>Implementation is not included.</strong> Additional sources,
+            workflows, integrations, travel, implementation, and ongoing support are
+            separate scope.
           </p>
           <a
             class="marketing-button marketing-button-primary"
@@ -223,16 +224,13 @@ const architectureImage = publicAssetUrl(
   </div>
 </BaseLayout>
 
-<script is:inline>
+<script>
+  import {
+    campaignAttributionParameters,
+    copyAttributionParameters,
+  } from "../scripts/attribution";
+
   (() => {
-    const attributionParameters = [
-      "utm_source",
-      "utm_medium",
-      "utm_campaign",
-      "utm_term",
-      "utm_content",
-      "referral",
-    ];
     const pageParameters = new URLSearchParams(window.location.search);
 
     document.querySelectorAll("a[data-preserve-attribution]").forEach((link) => {
@@ -241,16 +239,11 @@ const architectureImage = publicAssetUrl(
       }
 
       const target = new URL(link.href);
-      let hasAttribution = false;
-
-      for (const parameter of attributionParameters) {
-        const value = pageParameters.get(parameter);
-
-        if (value !== null) {
-          target.searchParams.set(parameter, value);
-          hasAttribution = true;
-        }
-      }
+      const hasAttribution = copyAttributionParameters(
+        pageParameters,
+        target,
+        campaignAttributionParameters,
+      );
 
       if (hasAttribution) {
         link.href = target.toString();

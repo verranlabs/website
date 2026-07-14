@@ -3,11 +3,27 @@ import { expect, test } from "@playwright/test";
 const tallyFixture = "<p>Qualification form fixture</p>";
 const workflowReviewTallyFixture = `
   <form>
-    <label>
-      <input type="checkbox" name="workflowReviewPriceAcknowledged" required />
-      I acknowledge that the AI Workflow Review is $2,500.
-    </label>
+    <fieldset>
+      <legend>Do you acknowledge the published Workflow Review price?</legend>
+      <label>
+        <input type="radio" name="priceAcknowledgement" value="acknowledged" required />
+        I acknowledge that the AI Workflow Review is $2,500.
+      </label>
+      <label>
+        <input type="radio" name="priceAcknowledgement" value="manual-review" required />
+        I am not ready to acknowledge the published price.
+      </label>
+    </fieldset>
+    <button type="submit">Continue</button>
   </form>
+  <script>
+    document.querySelector("form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const answer = new FormData(event.currentTarget).get("priceAcknowledgement");
+      const outcome = answer === "acknowledged" ? "qualified" : "received";
+      window.top.location.href = "http://127.0.0.1:4321/website/contact/" + outcome + "/";
+    });
+  </script>
 `;
 
 test("a smaller-team buyer can understand the bounded Workflow Review", async ({
@@ -28,6 +44,7 @@ test("a smaller-team buyer can understand the bounded Workflow Review", async ({
   await expect(workflowReview).toContainText("Risk recommendation");
   await expect(workflowReview).toContainText("Next-step recommendation");
   await expect(workflowReview).toContainText("Implementation is not included");
+  await expect(workflowReview).toContainText("Additional sources");
   await expect(workflowReview).toContainText("separate scope");
   await expect(
     workflowReview.getByRole("link", { name: "Request the Workflow Review" }),
@@ -97,21 +114,12 @@ test("price acknowledgement gates Workflow Review scheduling", async ({ page }) 
   const tallyFrame = page.frameLocator(
     'iframe[title="Verran Labs qualification form"]',
   );
-  await expect(
-    tallyFrame.getByLabel(
-      "I acknowledge that the AI Workflow Review is $2,500.",
-    ),
-  ).toHaveAttribute("required", "");
+  await tallyFrame
+    .getByLabel("I am not ready to acknowledge the published price.")
+    .check();
+  await tallyFrame.getByRole("button", { name: "Continue" }).click();
 
-  await page.goto("./contact/qualified/");
-  await expect(
-    page.getByRole("link", { name: "Schedule the Verran Labs Fit Call" }),
-  ).toHaveAttribute(
-    "href",
-    "https://calendar.google.com/calendar/appointments/schedules/test-fit-call",
-  );
-
-  await page.goto("./contact/received/");
+  await expect(page).toHaveURL(/\/contact\/received\/$/);
   await expect(
     page.getByRole("heading", { name: "Your inquiry is in review." }),
   ).toBeVisible();
@@ -119,4 +127,18 @@ test("price acknowledgement gates Workflow Review scheduling", async ({ page }) 
     page.getByText(/Inquiries that do not meet the published scheduling requirements/),
   ).toBeVisible();
   await expect(page.locator('a[href*="calendar.google"]')).toHaveCount(0);
+
+  await page.goto("./contact/?offer=workflow-review");
+  await tallyFrame
+    .getByLabel("I acknowledge that the AI Workflow Review is $2,500.")
+    .check();
+  await tallyFrame.getByRole("button", { name: "Continue" }).click();
+
+  await expect(page).toHaveURL(/\/contact\/qualified\/$/);
+  await expect(
+    page.getByRole("link", { name: "Schedule the Verran Labs Fit Call" }),
+  ).toHaveAttribute(
+    "href",
+    "https://calendar.google.com/calendar/appointments/schedules/test-fit-call",
+  );
 });
