@@ -41,28 +41,21 @@ if (tallyUrl) {
 </div>
 
 <script>
-  import {
-    copyAttributionParameters,
-    tallyAttributionParameters,
-  } from "../scripts/attribution";
+  import { copyAllowedAttribution } from "../scripts/attribution";
 
-  (() => {
-    const frame = document.querySelector("iframe[data-tally-intake]");
+  const frame = document.querySelector("iframe[data-tally-intake]");
 
-    if (!(frame instanceof HTMLIFrameElement) || !frame.dataset.tallySrc) {
-      return;
-    }
-
+  if (frame instanceof HTMLIFrameElement && frame.dataset.tallySrc) {
     const formUrl = new URL(frame.dataset.tallySrc);
     const pageParameters = new URLSearchParams(window.location.search);
+    const offer = pageParameters.get("offer")?.trim();
 
-    copyAttributionParameters(
-      pageParameters,
-      formUrl,
-      tallyAttributionParameters,
-    );
+    if (offer) {
+      formUrl.searchParams.set("offer", offer);
+    }
 
+    copyAllowedAttribution(pageParameters, formUrl.searchParams);
     formUrl.searchParams.set("originPage", window.location.pathname);
     frame.src = formUrl.toString();
-  })();
+  }
 </script>

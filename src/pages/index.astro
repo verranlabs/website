@@ -184,6 +184,29 @@ const architectureImage = publicAssetUrl(
         </figure>
       </section>
 
+      <section class="workspace-path" aria-labelledby="workspace-path-title">
+        <div>
+          <p class="marketing-kicker">For individual knowledge workers</p>
+          <h2 id="workspace-path-title">Private Agentic Workspace</h2>
+          <p>
+            A focused, done-with-you workspace for technical founders, independent
+            consultants, researchers, and executives who want to work more effectively
+            with their own approved knowledge.
+          </p>
+        </div>
+        <aside aria-label="Private Agentic Workspace price and action">
+          <span>$4,500 fixed price</span>
+          <p>Up to two approved knowledge sources and one bounded workflow.</p>
+          <a
+            class="marketing-button marketing-button-primary"
+            href={routes.agenticWorkspace}
+            data-preserve-attribution
+          >
+            Explore the Private Agentic Workspace
+          </a>
+        </aside>
+      </section>
+
       <section class="founder-boundary" aria-labelledby="founder-title">
         <div>
           <p class="marketing-kicker">Founder-led delivery</p>
@@ -223,31 +246,3 @@ const architectureImage = publicAssetUrl(
     <SiteFooter />
   </div>
 </BaseLayout>
-
-<script>
-  import {
-    campaignAttributionParameters,
-    copyAttributionParameters,
-  } from "../scripts/attribution";
-
-  (() => {
-    const pageParameters = new URLSearchParams(window.location.search);
-
-    document.querySelectorAll("a[data-preserve-attribution]").forEach((link) => {
-      if (!(link instanceof HTMLAnchorElement)) {
-        return;
-      }
-
-      const target = new URL(link.href);
-      const hasAttribution = copyAttributionParameters(
-        pageParameters,
-        target,
-        campaignAttributionParameters,
-      );
-
-      if (hasAttribution) {
-        link.href = target.toString();
-      }
-    });
-  })();
-</script>

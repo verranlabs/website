@@ -42,5 +42,10 @@ const robotsContent = publicSiteConfig.indexingEnabled
   </head>
   <body>
     <slot />
+    <script>
+      import { preserveAttributionOnLinks } from "../scripts/attribution";
+
+      preserveAttributionOnLinks();
+    </script>
   </body>
 </html>

@@ -206,8 +206,46 @@
 .assessment-section,
 .workflow-review-section,
 .system-evidence,
+.workspace-path,
 .founder-boundary {
   padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.workspace-path {
+  align-items: end;
+  background: var(--limestone);
+  display: grid;
+  gap: clamp(2rem, 7vw, 5rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.65fr);
+  margin-inline: calc(clamp(1rem, 4vw, 2rem) * -1);
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.workspace-path > div > p:not(.marketing-kicker),
+.workspace-path aside p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.workspace-path > div > p:not(.marketing-kicker) {
+  margin: 1.25rem 0 0;
+  max-width: 680px;
+}
+
+.workspace-path aside {
+  border-left: 4px solid var(--ochre);
+  padding-left: 1.25rem;
+}
+
+.workspace-path aside span {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+}
+
+.workspace-path aside p {
+  font-size: 0.9rem;
+  margin: 0.6rem 0 1.25rem;
 }
 
 .buyer-fit {
@@ -221,6 +259,7 @@
 }
 
 .buyer-fit h2,
+.workspace-path h2,
 .assessment-heading h2,
 .workflow-review-heading h2,
 .system-evidence h2,
@@ -580,6 +619,7 @@
   .assessment-heading,
   .workflow-review-heading,
   .system-evidence,
+  .workspace-path,
   .founder-boundary {
     grid-template-columns: 1fr;
   }
